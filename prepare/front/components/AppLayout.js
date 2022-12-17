@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Link from "next/link"; // Link 컴포넌트
 import { Menu } from "antd";
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children }) => { // 일부만 공통인 애들
   return (
     <div>
       <div>
