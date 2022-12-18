@@ -2,14 +2,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link"; // Link 컴포넌트
-import { Menu } from "antd";
+import { Menu, Input, Row, Col } from "antd"; // ant 디자인 컴포넌트 가져오기
 
-const AppLayout = ({ children }) => { // 일부만 공통인 애들
+const AppLayout = ({ children }) => {
+  // 일부만 공통인 애들
   return (
     <div>
       <div>
         <Menu mode="horizontal">
-          <Menu.Item>  
+          <Menu.Item>
             <Link href="/">
               <a>노드버드</a>
             </Link>{" "}
@@ -22,13 +23,28 @@ const AppLayout = ({ children }) => { // 일부만 공통인 애들
             {/* Link 안에 a태그 */}
           </Menu.Item>
           <Menu.Item>
+            <Input.Search enterButton style={{ verticalAlign: "middle" }} />
+          </Menu.Item>
+          <Menu.Item>
             <Link href="/signup">
               <a>회원가입</a>
             </Link>
           </Menu.Item>
         </Menu>
+        <Row gutter={8}>
+          <Col xs={24} md={6}> 
+            왼쪽메뉴
+          </Col>
+          {/* 모바일일때 24칸 중에 24칸, 데스크탑에서는 6칸만 차지한다 */}
+          <Col xs={24} md={12}>
+            {children}
+          </Col>
+          <Col xs={24} md={6} >
+          <a href='https://www.naver.com' target="_blank" rel='noreferrer noopener'>네이버</a> 
+          {/* 새창에서 쓸 때는 noreferrer noopener를 써서 보안 강화하기  */}
+          </Col>
+        </Row>
       </div>
-      {children}
     </div>
   );
 };
