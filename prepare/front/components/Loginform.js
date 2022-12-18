@@ -1,13 +1,17 @@
 import React, { useCallback, useState, useMemo } from "react";
 import { Form, Input, Button } from "antd";
 import Link from "next/link";
-import styled from "styled-components";//styled-components로 리렌더링 최소화
+import styled from "styled-components"; //styled-components로 리렌더링 최소화
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
 `;
 
-const Loginform = () => {
+const FormWrapper = styled(Form)`
+  padding: 20px;
+`;
+
+const Loginform = ({ setIsLoggedIn }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -22,10 +26,17 @@ const Loginform = () => {
     setPassword(e.target.value);
   }, []);
 
-const style = useMemo(() => ({marginTop: 10}), []) // 리렌더링돼도 같은 객체 유지(리렌더링 최적화)
+  const style = useMemo(() => ({ marginTop: 10 }), []); // 리렌더링돼도 같은 객체 유지(리렌더링 최적화)
+
+  const onSubmitForm = useCallback(() => {
+    // antd에서는 onFinish로 자동으로 e.preventDefault가 적용됨
+    console.log(id, password);
+    setIsLoggedIn(true); // 로그인 되면 true로 바뀜
+  }, [id, password]);
 
   return (
-    <Form>
+    <FormWrapper onFinish={onSubmitForm} >
+      {/* onFinish는 자동으로 e.preventDefault가 적용 됨  */}
       <div>
         <label htmlFor="user-id">아이디</label>
         <br />
@@ -53,7 +64,7 @@ const style = useMemo(() => ({marginTop: 10}), []) // 리렌더링돼도 같은 
           {/* href는 Link에만 넣고 a태그에는 넣지않기  */}
         </Link>
       </ButtonWrapper>
-    </Form>
+    </FormWrapper>
   );
 };
 export default Loginform;

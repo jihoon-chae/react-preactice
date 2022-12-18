@@ -43,7 +43,7 @@ const AppLayout = ({ children }) => {
         </Menu>
         <Row gutter={8}>
           <Col xs={24} md={6}>
-            {isLoggedIn ? <UserProfile /> : <LogginForm />}
+            {isLoggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn}/> : <LogginForm setIsLoggedIn={setIsLoggedIn}/>}
           </Col>
           {/* 모바일일때 24칸 중에 24칸, 데스크탑에서는 6칸만 차지한다 */}
           <Col xs={24} md={12}>

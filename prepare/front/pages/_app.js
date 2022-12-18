@@ -6,7 +6,7 @@ import Head from 'next/head' // 넥스트에서 제공하는 head
 const NodeBird = ({ Component }) => {
   return (
     <>
-      <div>공통 메뉴</div> {/* 모든 페이지에 공통인 메뉴 */}
+       {/* 모든 페이지에 공통인 메뉴 */}
       <Head>
         <meta charSet='utf-8'></meta>
         <title>NodeBird</title>
