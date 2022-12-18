@@ -3,9 +3,15 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link"; // Link 컴포넌트
 import { Menu, Input, Row, Col } from "antd"; // ant 디자인 컴포넌트 가져오기
+import styled from "styled-components";
 
 import UserProfile from "../components/UserProfile";
 import LogginForm from "../components/Loginform";
+
+const SearchInput = styled(Input.Search)`
+  // ant디자인 커스텀
+  vertical-align: middle;
+`;
 
 const AppLayout = ({ children }) => {
   // 일부만 공통인 애들
@@ -27,7 +33,7 @@ const AppLayout = ({ children }) => {
             {/* Link 안에 a태그 */}
           </Menu.Item>
           <Menu.Item>
-            <Input.Search enterButton style={{ verticalAlign: "middle" }} />
+            <Input.Search enterButton />
           </Menu.Item>
           <Menu.Item>
             <Link href="/signup">
