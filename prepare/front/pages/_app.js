@@ -1,14 +1,16 @@
-// 페이지 공통되는것들을 처리(언더바 쓸것)
+// pages 공통되는것들을 처리(언더바 쓸것)-> 완전 공통
+
 import React from "react";
 import PropTypes from "prop-types";
-import Head from 'next/head' // 넥스트에서 제공하는 head
+import Head from "next/head"; // NEXT에서 제공하는 head
+import 'antd/dist/antd.css';
 
-const NodeBird = ({ Component }) => {
+const NodeBird = ({ Component }) => { // index.js의 return부분이 Component로 들어감(_app.js가 index.js의 부모)
   return (
     <>
-       {/* 모든 페이지에 공통인 메뉴 */}
+      {/* 모든 페이지에 공통인 메뉴 */}
       <Head>
-        <meta charSet='utf-8'></meta>
+        <meta charSet="utf-8"></meta>
         <title>NodeBird</title>
       </Head>
       <Component />
@@ -17,6 +19,7 @@ const NodeBird = ({ Component }) => {
   );
 };
 
+// props 점검
 NodeBird.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };

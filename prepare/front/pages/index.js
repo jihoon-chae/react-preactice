@@ -1,6 +1,5 @@
 import React from "react"; // 안해도 되는데 리액트 할때 습관처럼
 import AppLayout from '../components/AppLayout';
-
 const Home = () => {
   return(
     <AppLayout>

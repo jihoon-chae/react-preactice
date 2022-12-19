@@ -17,7 +17,7 @@ const Loginform = ({ setIsLoggedIn }) => {
   const [passwordCheck, setPasswordCheck] = useState("");
 
   const onChangeId = useCallback((e) => {
-    // props로 전달할때는 꼭 useCallback 사용하자 (최적화를 위해서)
+    // 컴포넌트에 props로 전달할때는 꼭 useCallback 사용하자 (최적화를 위해서)
     setId(e.target.value);
   }, []);
 
@@ -35,7 +35,7 @@ const Loginform = ({ setIsLoggedIn }) => {
   }, [id, password]);
 
   return (
-    <FormWrapper onFinish={onSubmitForm} >
+    <FormWrapper onFinish={onSubmitForm}>
       {/* onFinish는 자동으로 e.preventDefault가 적용 됨  */}
       <div>
         <label htmlFor="user-id">아이디</label>

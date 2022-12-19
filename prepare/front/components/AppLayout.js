@@ -1,4 +1,4 @@
-// 메뉴 같은 거
+// 공통 컴포넌트 ex) 공통메뉴
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link"; // Link 컴포넌트
@@ -33,7 +33,7 @@ const AppLayout = ({ children }) => {
             {/* Link 안에 a태그 */}
           </Menu.Item>
           <Menu.Item>
-            <Input.Search enterButton />
+            <SearchInput enterButton />
           </Menu.Item>
           <Menu.Item>
             <Link href="/signup">
@@ -43,7 +43,11 @@ const AppLayout = ({ children }) => {
         </Menu>
         <Row gutter={8}>
           <Col xs={24} md={6}>
-            {isLoggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn}/> : <LogginForm setIsLoggedIn={setIsLoggedIn}/>}
+            {isLoggedIn ? (
+              <UserProfile setIsLoggedIn={setIsLoggedIn} />
+            ) : (
+              <LogginForm setIsLoggedIn={setIsLoggedIn} />
+            )}
           </Col>
           {/* 모바일일때 24칸 중에 24칸, 데스크탑에서는 6칸만 차지한다 */}
           <Col xs={24} md={12}>
