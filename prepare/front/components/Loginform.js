@@ -1,7 +1,9 @@
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Form, Input, Button } from "antd";
 import Link from "next/link";
 import styled from "styled-components"; //styled-components로 리렌더링 최소화
+import PropTypes from "prop-types";
+import useInput from "../hooks/useInput";
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
@@ -12,20 +14,8 @@ const FormWrapper = styled(Form)`
 `;
 
 const Loginform = ({ setIsLoggedIn }) => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
-
-  const onChangeId = useCallback((e) => {
-    // 컴포넌트에 props로 전달할때는 꼭 useCallback 사용하자 (최적화를 위해서)
-    setId(e.target.value);
-  }, []);
-
-  const onChangePassword = useCallback((e) => {
-    // props로 전달할때는 꼭 useCallback 사용하자 (최적화를 위해서)
-    setPassword(e.target.value);
-  }, []);
-
+  const [id, onChangeId] = useInput(""); // 커스텀 훅 가져와서 쓰기
+  const [password, onChangePassword] = useInput("");
   const style = useMemo(() => ({ marginTop: 10 }), []); // 리렌더링돼도 같은 객체 유지(리렌더링 최적화)
 
   const onSubmitForm = useCallback(() => {
@@ -67,4 +57,9 @@ const Loginform = ({ setIsLoggedIn }) => {
     </FormWrapper>
   );
 };
+
+Loginform.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
+};
+
 export default Loginform;

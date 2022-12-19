@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
-    "antd": "^4.24.5",
+    "antd": "^5.0.7",
     "next": "^9.5.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

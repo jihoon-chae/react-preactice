@@ -3,7 +3,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head"; // NEXT에서 제공하는 head
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 const NodeBird = ({ Component }) => { // index.js의 return부분이 Component로 들어감(_app.js가 index.js의 부모)
   return (
