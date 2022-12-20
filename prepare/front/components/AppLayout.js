@@ -1,10 +1,10 @@
 // 공통 컴포넌트 ex) 공통메뉴
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link"; // Link 컴포넌트
 import { Menu, Input, Row, Col } from "antd"; // ant 디자인 컴포넌트 가져오기
 import styled from "styled-components";
-
+import { useSelector } from "react-redux";
 import UserProfile from "../components/UserProfile";
 import LogginForm from "../components/Loginform";
 
@@ -13,9 +13,12 @@ const SearchInput = styled(Input.Search)`
   vertical-align: middle;
 `;
 
+// 일부만 공통인 애들
 const AppLayout = ({ children }) => {
-  // 일부만 공통인 애들
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // isLoggedIn의 상태가 바뀌면 자동으로 AppLayout이 리렌더링
+  const isLoggedIn = useSelector((state) => {
+    state.user.isLoggedIn;
+  });
   return (
     <div>
       <div>
@@ -43,11 +46,7 @@ const AppLayout = ({ children }) => {
         </Menu>
         <Row gutter={8}>
           <Col xs={24} md={6}>
-            {isLoggedIn ? (
-              <UserProfile setIsLoggedIn={setIsLoggedIn} />
-            ) : (
-              <LogginForm setIsLoggedIn={setIsLoggedIn} />
-            )}
+            {isLoggedIn ? <UserProfile /> : <LogginForm />}
           </Col>
           {/* 모바일일때 24칸 중에 24칸, 데스크탑에서는 6칸만 차지한다 */}
           <Col xs={24} md={12}>

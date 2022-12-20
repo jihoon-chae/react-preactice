@@ -3,7 +3,9 @@ import { Form, Input, Button } from "antd";
 import Link from "next/link";
 import styled from "styled-components"; //styled-components로 리렌더링 최소화
 import PropTypes from "prop-types";
+import { useDispatch } from 'react-redux';
 import useInput from "../hooks/useInput";
+import { loginAction } from '../reducers';
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
@@ -13,7 +15,8 @@ const FormWrapper = styled(Form)`
   padding: 20px;
 `;
 
-const Loginform = ({ setIsLoggedIn }) => {
+const Loginform = () => {
+  const dispatch = useDispatch();
   const [id, onChangeId] = useInput(""); // 커스텀 훅 가져와서 쓰기
   const [password, onChangePassword] = useInput("");
   const style = useMemo(() => ({ marginTop: 10 }), []); // 리렌더링돼도 같은 객체 유지(리렌더링 최적화)
@@ -21,7 +24,7 @@ const Loginform = ({ setIsLoggedIn }) => {
   const onSubmitForm = useCallback(() => {
     // antd에서는 onFinish로 자동으로 e.preventDefault가 적용됨
     console.log(id, password);
-    setIsLoggedIn(true); // 로그인 되면 true로 바뀜
+    dispatch(loginAction())
   }, [id, password]);
 
   return (

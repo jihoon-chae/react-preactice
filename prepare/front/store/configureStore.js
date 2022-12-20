@@ -2,9 +2,14 @@
 
 import { createWrapper } from "next-redux-wrapper";
 import { createStore } from "redux";
+import reducer from "../reducers";
 
 const configureStore = () => {
   const store = createStore(reducer);
+  store.dispatch({ // dispatch하게 되면 type과 data가 reducer로 전달됨
+    type: "CHANGE_NICKNAME",
+    data: "boogicho",
+  });
   return store;
 };
 
