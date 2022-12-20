@@ -3,7 +3,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head"; // NEXT에서 제공하는 head
-// import 'antd/dist/antd.css';
+import wrapper from '../store/configureStore';
 
 const NodeBird = ({ Component }) => { // index.js의 return부분이 Component로 들어감(_app.js가 index.js의 부모)
   return (
@@ -24,4 +24,4 @@ NodeBird.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };
 
-export default NodeBird;
+export default wrapper.withRedux(NodeBird); // configureStore.js의 Redux 적용
