@@ -1,62 +1,24 @@
 import { HYDRATE } from "next-redux-wrapper";
+import user from "./user"; // reducer
+import post from "./post"; // reducer
+import { combineReducers } from "redux"; // reducer합쳐주는 메셔드
 
-// 기본 State
-const initialState = {
-  user: {
-    isLoggedIn: false,
-    user: null,
-    signUpData: {},
-    loginDate: {},
+
+  // combineReducers => user reducer와 post reducer 합쳐주는 메셔드
+const rootReducer = combineReducers({
+  index: (state = {}, action) => {
+    // 리덕스 서버사이드 렌더링
+    switch (action.type) {
+      case HYDRATE:
+        console.log("HYDRATE", action);
+        return { ...state, ...action.payload };
+      default:
+        return state;
+    }
   },
-
-  posts: {
-    mainPosts: [],
-  },
-};
-
-export const loginAction = (data) => {
-  return {
-    type: "LOG_IN",
-    data,
-  };
-};
-
-export const logoutAction = () => {
-  // 로그아웃은 데이터 필요없음
-  return {
-    type: "LOG_OUT",
-  };
-};
-
-// (이전상태, 액션) => 다음상태 (2개를 1개로 축소)
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case HYDRATE:
-      console.log("HYDRATE", action);
-      return { ...state, ...action.payload };
-    case "LOG_IN": // 로그인
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          isLoggedIn: true, // 로그인 되면 true로 바꿔주기
-          me: action.data,
-        },
-      };
-
-    case "LOG_OUT": // 로그인
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          isLoggedIn: false, // 로그인 되면 true로 바꿔주기
-          me: null,
-        },
-      };
-    default:
-      return state;
-  }
-};
+  user, // user reducer
+  post, //  post reducer
+});
 
 // async action creator (비동기)
 // action creator
