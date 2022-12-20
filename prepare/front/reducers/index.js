@@ -40,7 +40,7 @@ const rootReducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isLoggedIn: true, // 로그인 되면 true로 바꿔주기
-          user: action.data,
+          me: action.data,
         },
       };
 
@@ -50,9 +50,11 @@ const rootReducer = (state = initialState, action) => {
         user: {
           ...state.user,
           isLoggedIn: false, // 로그인 되면 true로 바꿔주기
-          user: null,
+          me: null,
         },
       };
+    default:
+      return state;
   }
 };
 
@@ -74,6 +76,6 @@ changeNickname("boogicho");
 //   data: 'boogicho',
 // };
 
-store.dispatch(changeNickname("mighty tak"));
+// store.dispatch(changeNickname("mighty tak"));
 
 export default rootReducer;

@@ -16,9 +16,9 @@ const SearchInput = styled(Input.Search)`
 // 일부만 공통인 애들
 const AppLayout = ({ children }) => {
   // isLoggedIn의 상태가 바뀌면 자동으로 AppLayout이 리렌더링
-  const isLoggedIn = useSelector((state) => {
-    state.user.isLoggedIn;
-  });
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn
+  );
+
   return (
     <div>
       <div>
