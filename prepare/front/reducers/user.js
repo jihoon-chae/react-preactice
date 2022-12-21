@@ -1,6 +1,6 @@
 export const initialState = {
   isLoggedIn: false,
-  user: null,
+  me: null,
   signUpData: {},
   loginDate: {},
 };
@@ -25,14 +25,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,  
         isLoggedIn: true, // 로그인 되면 true로 바꿔주기
-        user: action.data,
+        me: action.data,
       };
 
     case "LOG_OUT": // 로그인
       return {
         ...state,
         isLoggedIn: false, // 로그인 되면 true로 바꿔주기
-        user: null,
+        me: null,
       };
 
     default:
